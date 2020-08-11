@@ -30,7 +30,7 @@ services:
 
 
   root:
-    image: nginx/nginx
+    image: nginx
     volumes:
       - ./html:/etc/nginx/html
     environment:
