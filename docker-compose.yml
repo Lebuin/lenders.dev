@@ -32,7 +32,7 @@ services:
   root:
     image: nginx
     volumes:
-      - ./html:/etc/nginx/html
+      - ./html:/usr/share/nginx/html
     environment:
       - VIRTUAL_HOST=seppe.dev
       - LETSENCRYPT_HOST=seppe.dev
