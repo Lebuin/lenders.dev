@@ -29,9 +29,11 @@ services:
     network_mode: bridge
 
 
-  whoami:
-    image: jwilder/whoami
+  root:
+    image: nginx/nginx
+    volumes:
+      - html:/etc/nginx/html
     environment:
-      - VIRTUAL_HOST=whoami.seppe.dev
-      - LETSENCRYPT_HOST=whoami.seppe.dev
+      - VIRTUAL_HOST=seppe.dev
+      - LETSENCRYPT_HOST=seppe.dev
     network_mode: bridge
