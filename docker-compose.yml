@@ -7,11 +7,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - .volumes/conf:/etc/nginx/conf.d
-      - .volumes/vhost:/etc/nginx/vhost.d
-      - .volumes/html:/usr/share/nginx/html
-      - .volumes/dhparam:/etc/nginx/dhparam
-      - .volumes/certs:/etc/nginx/certs:ro
+      - ./.volumes/conf:/etc/nginx/conf.d
+      - ./.volumes/vhost:/etc/nginx/vhost.d
+      - ./.volumes/html:/usr/share/nginx/html
+      - ./.volumes/dhparam:/etc/nginx/dhparam
+      - ./.volumes/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     network_mode: bridge
 
@@ -22,7 +22,7 @@ services:
     volumes_from:
       - nginx-proxy
     volumes:
-      - .volumes/certs:/etc/nginx/certs:rw
+      - ./.volumes/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - DEFAULT_EMAIL=seppe.lenders@gmail.com
@@ -32,7 +32,7 @@ services:
   root:
     image: nginx/nginx
     volumes:
-      - html:/etc/nginx/html
+      - ./html:/etc/nginx/html
     environment:
       - VIRTUAL_HOST=seppe.dev
       - LETSENCRYPT_HOST=seppe.dev
