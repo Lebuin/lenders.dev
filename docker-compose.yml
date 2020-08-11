@@ -13,20 +13,23 @@ services:
       - ./.volumes/dhparam:/etc/nginx/dhparam
       - ./.volumes/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
+    restart: always
 
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-proxy-le
-    volumes_from:
+    depends_on:
       - nginx-proxy
     volumes:
+      - ./.volumes/vhost:/etc/nginx/vhost.d
+      - ./.volumes/html:/usr/share/nginx/html
+      - ./.volumes/dhparam:/etc/nginx/dhparam
       - ./.volumes/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - DEFAULT_EMAIL=seppe.lenders@gmail.com
-    network_mode: bridge
+    restart: always
 
 
   root:
@@ -36,4 +39,8 @@ services:
     environment:
       - VIRTUAL_HOST=seppe.dev
       - LETSENCRYPT_HOST=seppe.dev
-    network_mode: bridge
+
+
+networks:
+  default:
+    name: reverse-proxy

@@ -15,4 +15,5 @@ apt install docker-ce docker-ce-cli containerd.io
 curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-# TODO: do we need something that generates entropy? See https://github.com/docker/compose/issues/6931
+# Install haveged to make sure the server generates enough entropy
+apt install haveged
