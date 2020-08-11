@@ -33,4 +33,5 @@ services:
     image: jwilder/whoami
     environment:
       - VIRTUAL_HOST=whoami.seppe.dev
+      - LETSENCRYPT_HOST=whoami.seppe.dev
     network_mode: bridge
