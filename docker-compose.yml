@@ -42,7 +42,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,.seppe.dev
-      - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,.seppe.dev
+      - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev
+      - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev
     network_mode: bridge
     restart: always
