@@ -36,11 +36,12 @@ services:
     restart: always
 
 
-  root:
+  nginx:
     image: nginx
     volumes:
+      - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=seppe.lenders.dev
-      - LETSENCRYPT_HOST=seppe.lenders.dev
+      - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev
+      - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev
     network_mode: bridge
