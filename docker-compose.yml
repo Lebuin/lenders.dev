@@ -41,6 +41,6 @@ services:
     volumes:
       - ./html:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=seppe.dev
-      - LETSENCRYPT_HOST=seppe.dev
+      - VIRTUAL_HOST=seppe.lenders.dev
+      - LETSENCRYPT_HOST=seppe.lenders.dev
     network_mode: bridge
