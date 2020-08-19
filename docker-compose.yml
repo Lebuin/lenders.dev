@@ -4,6 +4,7 @@ services:
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
+    restart: always
     ports:
       - "80:80"
       - "443:443"
@@ -14,13 +15,15 @@ services:
       - ./.volumes/dhparam:/etc/nginx/dhparam
       - ./.volumes/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
-    restart: always
+    networks:
+      - internal
+      - external
 
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-proxy-le
+    restart: always
     depends_on:
       - nginx-proxy
     volumes:
@@ -32,17 +35,22 @@ services:
     environment:
       - NGINX_PROXY_CONTAINER=nginx-proxy
       - DEFAULT_EMAIL=seppe.lenders@gmail.com
-    network_mode: bridge
-    restart: always
+    networks:
+      - internal
 
 
   nginx:
     image: nginx
+    restart: always
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
     environment:
       - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev,www.seppe.dev
       - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev,www.seppe.dev
-    network_mode: bridge
-    restart: always
+    networks:
+      - internal
+
+networks:
+  internal:
+  external:
