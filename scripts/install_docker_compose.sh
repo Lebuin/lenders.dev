@@ -18,3 +18,8 @@ chmod +x /usr/local/bin/docker-compose
 # Install haveged to make sure the server generates enough entropy.
 # This was necessary on DigitalOcean, probably not on OVH.
 apt install -y haveged
+
+
+# Add the current user to the docker group to enable rootless docker access and reboot
+usermod -aG docker $USER
+reboot
