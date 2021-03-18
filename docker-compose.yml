@@ -46,8 +46,8 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - ./html:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev,www.seppe.dev,seppelenders.be,www.seppelenders.be
-      - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev,seppe.dev,www.seppe.dev,seppelenders.be,www.seppelenders.be
+      - VIRTUAL_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev
+      - LETSENCRYPT_HOST=seppe.lenders.dev,lenders.dev,www.lenders.dev
     networks:
       - internal
 
